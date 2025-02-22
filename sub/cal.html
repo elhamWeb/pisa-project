@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>آلة حاسبة علمية</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+        }
+        .calculator {
+            width: 340px;
+            height: 420px;
+            background-color: #044888;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            padding: 20px;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .screen {
+            width: 100%;
+            height: 70px;
+            background-color: #000;
+            color: #0f0;
+            font-size: 2em;
+            border-radius: 5px;
+            text-align: right;
+            padding: 10px;
+            box-sizing: border-box;
+            margin-bottom: 20px;
+        }
+        .buttons {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 10px;
+            width: 100%;
+        }
+        .button {
+            background-color: #86bdfc;
+            color: #030202;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.2em;
+            padding: 15px;
+            cursor: pointer;
+            text-align: center;
+        }
+        .button:active {
+            background-color: #555;
+        }
+        .button.operator {
+            background-color: #e5c393;
+        }
+        .button.operator:active {
+            background-color: #e08e00;
+        }
+    </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const screen = document.getElementById("screen");
+            const buttons = document.querySelectorAll(".button");
+            let currentInput = "";
+
+            buttons.forEach(button => {
+                button.addEventListener("click", () => {
+                    const value = button.textContent;
+
+                    if (value === "=") {
+                        try {
+                            currentInput = eval(currentInput.replace(/π/g, Math.PI).replace(/e/g, Math.E).replace(/√/g, "Math.sqrt").replace(/\^/g, "**"));
+                            screen.textContent = currentInput;
+                        } catch {
+                            screen.textContent = "خطأ";
+                            currentInput = "";
+                        }
+                    } else if (value === "sin" || value === "cos" || value === "tan" || value === "log" || value === "ln") {
+                        try {
+                            const angle = parseFloat(currentInput);
+                            if (value === "sin") currentInput = Math.sin(angle * Math.PI / 180);
+                            if (value === "cos") currentInput = Math.cos(angle * Math.PI / 180);
+                            if (value === "tan") currentInput = Math.tan(angle * Math.PI / 180);
+                            if (value === "log") currentInput = Math.log10(angle);
+                            if (value === "ln") currentInput = Math.log(angle);
+                            screen.textContent = currentInput;
+                        } catch {
+                            screen.textContent = "خطأ";
+                            currentInput = "";
+                        }
+                    } else {
+                        currentInput += value;
+                        screen.textContent = currentInput;
+                    }
+                });
+            });
+
+            // Set the window size on load
+            window.onload = function() {
+                window.resizeTo(390, 490);
+            };
+        });
+
+        // Prevent resizing of the window
+        window.addEventListener("resize", function() {
+            window.resizeTo(390, 490);
+        });
+    </script>
+</head>
+<body>
+    <div class="calculator">
+        <div class="screen" id="screen">0</div>
+        <div class="buttons">
+            <button class="button">7</button>
+            <button class="button">8</button>
+            <button class="button">9</button>
+            <button class="button operator">/</button>
+            <button class="button operator">√</button>
+
+            <button class="button">4</button>
+            <button class="button">5</button>
+            <button class="button">6</button>
+            <button class="button operator">*</button>
+            <button class="button operator">^</button>
+
+            <button class="button">1</button>
+            <button class="button">2</button>
+            <button class="button">3</button>
+            <button class="button operator">-</button>
+            <button class="button operator">sin</button>
+
+            <button class="button">0</button>
+            <button class="button">.</button>
+            <button class="button">=</button>
+            <button class="button operator">+</button>
+            <button class="button operator">cos</button>
+
+            <button class="button operator">tan</button>
+            <button class="button operator">log</button>
+            <button class="button operator">ln</button>
+            <button class="button operator">π</button>
+            <button class="button operator">e</button>
+        </div>
+    </div>
+</body>
+</html>

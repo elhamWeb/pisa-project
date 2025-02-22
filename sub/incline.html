@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>السطح المائل</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            direction: rtl;
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            padding: 20px;
+        }
+
+        .section {
+            flex: 1;
+            margin: 10px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            padding: 15px;
+            text-align: right;
+            font-weight: bold;
+        }
+
+        .section img {
+            width: 570px;
+            border-radius: 10px;
+            height: 350px;
+        }
+
+        .section textarea {
+            width: 100%;
+            height: 40px;
+            margin-top: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 5px;
+        }
+
+        .submit-btn {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .submit-btn:hover {
+            background-color: #45a049;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80%;
+            max-width: 500px;
+            background-color: white;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            z-index: 1000;
+        }
+
+        .modal h2 {
+            margin: 0 0 15px 0;
+        }
+
+        .modal p {
+            margin: 10px 0;
+        }
+
+        .modal .close-btn {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #f44336;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .modal .close-btn:hover {
+            background-color: #d32f2f;
+        }
+
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- القسم الأول -->
+        <div class="section">
+            <img src="incline one.gif">
+            <p>السؤال الأول: اي الاجسام التي تنزلق على السطح المائل تسارعها هو الاكبر وايها هو الاقل حيث الاجسام جميعها نفس الكتلة  </p>
+            <textarea id="answer1"></textarea>
+            <p>السؤال الثاني: استنتج تأثر زاوية الميل في التسارع على السطح المائل</p>
+            <textarea id="answer2"></textarea>
+        </div>
+
+        <!-- القسم الثاني -->
+        <div class="section">
+            <img src="fw.gif" alt="صورة 2">
+            <p>السؤال الثالث: ماذا يحدث للقوى كلما زاد ميلان السطح؟</p>
+            <textarea id="answer3"></textarea>
+            <p>السؤال الرابع:ما هي القوى التي تتساوى مع <sub>//</sub>F في حال وصلت زاوية الميل الى 90</p>
+            <textarea id="answer4"></textarea>
+        </div>
+    </div>
+
+    <button class="submit-btn" onclick="showAnswers()">إرسال</button>
+
+    <div class="overlay" id="overlay"></div>
+
+    <div class="modal" id="modal">
+        <h2>الإجابات:</h2>
+        <p id="result1"></p>
+        <p id="result2"></p>
+        <p id="result3"></p>
+        <p id="result4"></p>
+        <button class="close-btn" onclick="closeModal()">إغلاق</button>
+    </div>
+
+    <script>
+        function showAnswers() {
+            // الحصول على الإجابات
+           
+            // عرض الإجابات في الصندوق
+            document.getElementById('result1').textContent = `الجسم رقم 1 هو الاسرع`;
+            document.getElementById('result2').textContent = `كلما زادت زاوية ميل السطح زاد تسارع الجسم للاسفل حيث مقدار مركبة الوزن الافقية يزداد`;
+            document.getElementById('result3').textContent = `Fw يبقى مقداره كما هو ، Fn تتناقص ، F// تزداد`;
+            document.getElementById('result4').textContent = `القوى المساوية هي قوة الوزن Fw`;
+
+            // إظهار الصندوق والطبقة الشفافة
+            document.getElementById('modal').style.display = 'block';
+            document.getElementById('overlay').style.display = 'block';
+        }
+
+        function closeModal() {
+            // إخفاء الصندوق والطبقة الشفافة
+            document.getElementById('modal').style.display = 'none';
+            document.getElementById('overlay').style.display = 'none';
+        }
+    </script>
+</body>
+</html>

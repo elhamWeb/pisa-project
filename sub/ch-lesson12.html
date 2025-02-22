@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image and Questions</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            text-align: right;
+        }
+        .container {
+            font-weight: bold;
+            display:grid;
+            grid-template-columns: repeat(3, auto);
+            align-items: center;
+            gap: 15px;
+            padding: 18px;
+        }
+        .section {
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            background-color: #f9f9f9;
+        }
+        .section img {
+            width: 95%;
+            height: auto;
+            border-radius: 8px;
+        }
+        .question {
+            margin-top: 15px;
+        }
+        .textarea {
+            width: 90%;
+            height: 50px;
+            margin-top: 5px;
+            padding: 8px;
+            font-size: 14px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            resize: none;
+        }
+        .submit-btn {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .submit-btn:hover {
+            background-color: #45a049;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80%;
+            max-width: 500px;
+            background-color: white;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            z-index: 1000;
+            text-align: right;
+        }
+
+        .modal h2 {
+            margin: 0 0 15px 0;
+        }
+
+        .modal p {
+            margin: 10px 0;
+        }
+
+        .modal .close-btn {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #f44336;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .modal .close-btn:hover {
+            background-color: #d32f2f;
+        }
+
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+    </style>
+</head>
+
+<script>
+    function showAnswers() {
+        
+        // عرض الإجابات في الصندوق
+        document.getElementById('result1').textContent = `الرقم الهيدروجيني الغير مناسب للنبته الاقل من 7 وهو الحامضي والاكثر من 7 وهو القاعدي ، تتأثر أغلب النباتات بالرقم الهيدروجيني للتربة حيث تكون التربة المتعادلة هي الانسب لنموها بشكل جيد`;
+        document.getElementById('result2').textContent = `الكوب الاول هو الماء النقي حيث يمثل الاختبار بورق الكاشف الذي لم يتغير لونه ان الماء صالح للشرب، ويمكننا بذلك من الكشف عن الماء الملوث الغير الصالح للشرب `
+        document.getElementById('result3').textContent = `جميع الاواني مناسبه ما عدا المعدن ، حيث يتفاعل المعدن مع مركبات الاطعمة ويزيد من حموضتها ثم تلفها حيث يصبح الرقم الهيدروجيني منخفض  `;
+
+        // إظهار الصندوق والطبقة الشفافة
+        document.getElementById('modal').style.display = 'block';
+        document.getElementById('overlay').style.display = 'block';
+    }
+
+    function closeModal() {
+        // إخفاء الصندوق والطبقة الشفافة
+        document.getElementById('modal').style.display = 'none';
+        document.getElementById('overlay').style.display = 'none';
+    }
+</script>
+<body>
+    <h2> الحموض والقواعد القسم الثاني</h2>
+    
+    <div class="container">
+        <!-- Section 1 -->
+        <div class="section">
+            <img src="food.gif">
+            <div class="question">
+                <label for="answer1">من خلال المقطع اي اواني الطعام هي الانسب لحفظ الاطعمة</label>
+                <textarea id="answer1" class="textarea" placeholder="اكتب الاجابة هنا"></textarea>
+            </div>
+            <div class="question">
+                <label for="answer2">لماذا الاوعية المعدنية تؤثر على الاطعمة وماعلاقته بالرقم الهيدروجيني</label>
+                <textarea id="answer2" class="textarea" placeholder="اكتب الاجابة هنا"></textarea>
+            </div>
+        </div>
+
+        <!-- Section 2 -->
+        <div class="section">
+            <img src="chp2.gif" alt="Section 2 Image">
+            <div class="question">
+                <label for="answer3"> برأيك،اي الاكواب يحوي ماء نقي وايها حامضي وايها قاعدي</label>
+                <textarea id="answer3" class="textarea" placeholder="اكتب الاجابة هنا"></textarea>
+            </div>
+            <div class="question">
+                <label for="answer4">ما علاقة معرفة الرقم الهيدروجيني بالماء الصالح للشرب؟</label>
+                <textarea id="answer4" class="textarea" placeholder="اكتب الاجابة هنا"></textarea>
+            </div>
+        </div>
+
+        <!-- Section 3 -->
+        <div class="section">
+            <img src="chp1.gif" alt="Section 3 Image">
+            <div class="question">
+                <label for="answer5">بعد مشاهدتك للمقطع ما الرقم الهيدروجيني  الغير مناسب للنبته</label>
+                <textarea id="answer5" class="textarea" placeholder="اكتب الاجابة هنا"></textarea>
+            </div>
+            <div class="question">
+                <label for="answer6">وضح اهمية قياس الرقم الهيدروجيني للزراعة</label>
+                <textarea id="answer6" class="textarea" placeholder="اكتب الاجابة هنا"></textarea>
+            </div>
+        </div>
+    </div>
+    <button class="submit-btn" onclick="showAnswers()">إرسال</button>
+        <div class="overlay" id="overlay"></div>
+
+        <div class="modal" id="modal">
+            <h2>الإجابات:</h2>
+            <p id="result1"></p>
+            <p id="result2"></p>
+            <p id="result3"></p>
+            <button class="close-btn" onclick="closeModal()">إغلاق</button>
+        </div>
+    
+</body>
+</html>

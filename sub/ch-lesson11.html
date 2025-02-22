@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الحموض والقواعد</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            text-align: right;
+        }
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            margin: 20px;
+        }
+        .section {
+            flex: 1;
+            margin: 10px;
+            padding: 20px;
+            background-color:#fafaf5;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .section h2 {
+            color: #2c3e50;
+        }
+        .section ul {
+            direction: rtl;
+            list-style-type:decimal;
+            padding-left: 20px;
+            font-weight: bold;
+        }
+        .question {
+            margin: 15px 0;
+        }
+        .question p {
+            font-weight: bold;
+        }
+        .answers {
+            margin-left: 20px;
+        }
+        .r-answers{
+            visibility: hidden;
+        }
+    
+        .modal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80%;
+            max-width: 500px;
+            background-color: white;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            z-index: 1000;
+            text-align: right;
+        }
+        .mark{
+            width:100px;
+            height: 100px;
+            border-color: #333;
+            border: 5px;
+            border-radius: 10px;
+            background-color: rgb(241, 192, 127);
+            padding: 10px 20px; /* Space inside the label */
+
+        }
+
+
+        .modal h2 {
+            margin: 0 0 15px 0;
+        }
+
+        .modal p {
+            margin: 10px 0;
+        }
+
+        .modal .close-btn {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #f44336;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .modal .close-btn:hover {
+            background-color: #d32f2f;
+        }
+
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+        .bttn{
+            display: flex;
+            justify-content: center;
+
+        }
+        .submit-btn {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .submit-btn:hover {
+            background-color: #45a049;
+        }
+        .mark{
+            width:100px;
+            height: 100px;
+            border-color: #333;
+            border: 5px;
+            border-radius: 10px;
+            background-color: rgb(241, 192, 127);
+            padding: 10px 20px; /* Space inside the label */
+
+        }
+
+
+
+    </style>
+</head>
+
+<script>
+    function showAnswers() {
+        
+        // Correct answers array
+        const correctAnswers = {
+            answer1: "A", 
+            answer2: "A", 
+            answer3: "D", 
+            answer4: "A", 
+        };
+
+
+        // Function to calculate the score
+            let score = 0;
+
+            // Loop through the questions and check answers
+            for (let questions in correctAnswers) {
+                const selectedOption = document.querySelector(`input[name="${questions}"]:checked`);
+                if (selectedOption && selectedOption.value === correctAnswers[questions]) {
+                    score++;
+                }
+            }
+
+            // Display the score
+            const result = document.getElementById('mark');
+            result.innerText = `${score} / 4`;
+            window.scrollTo({
+                top: 0, // Scroll to the very top
+                behavior: 'smooth' // Smooth scrolling animation
+            });
+
+        
+
+
+        
+        // عرض الإجابات في الصندوق
+       // document.getElementById('result1').textContent = `السؤال الاول : الخيار الاول`;
+      //  document.getElementById('result2').textContent = ` السؤال الثاني: الخيار الاول`;
+       // document.getElementById('result3').textContent = `السؤال الثالث: الخيار الرابع`;
+       // document.getElementById('result4').textContent = `السؤال الرابع: الخيار الاول`;
+
+
+        // إظهار الصندوق والطبقة الشفافة
+       //// document.getElementById('modal').style.display = 'block';
+       // document.getElementById('overlay').style.display = 'block';
+    }
+
+    function closeModal() {
+        // إخفاء الصندوق والطبقة الشفافة
+       // document.getElementById('modal').style.display = 'none';
+       // document.getElementById('overlay').style.display = 'none';
+    }
+</script>
+</head>
+<body>
+    <div>
+        <h2>الحموض والقواعد - القسم الاول</h2>
+        
+    </div>
+
+    <div class="container">
+        <!-- المادة التعليمية -->
+        <div class="section">
+            <h2>مادة تعليمية</h2>
+            <h2>الحموض والقواعد: تعريف ومفاهيم أساسية</h2>
+            <h3>الحموض (Acids)</h3>
+            <ul>
+                <li>مواد طعمها حامض (مثل عصير الليمون والخل).</li>
+                <li>تحول ورقة عباد الشمس الزرقاء إلى اللون الأحمر.</li>
+                <li>تتفاعل مع المعادن لتنتج غاز الهيدروجين.</li>
+                <li>تحتوي على أيونات الهيدروجين (<sup>+</sup>H) عند إذابتها في الماء.</li>
+                <li>أمثلة: حمض الهيدروكلوريك (HCl)، حمض الكبريتيك (H₂SO₄)، وحمض الخل (CH₃COOH).</li>
+            </ul>
+
+            <h3>القواعد (Bases)</h3>
+            <ul>
+                <li>مواد طعمها مرّ وملمسها زلق (مثل الصابون).</li>
+                <li>تحول ورقة عباد الشمس الحمراء إلى اللون الأزرق.</li>
+                <li>تتفاعل مع الحموض لتكوين الماء والملح.</li>
+                <li>تحتوي على أيونات الهيدروكسيد (<sup>-</sup>OH) عند إذابتها في الماء.</li>
+                <li>أمثلة: هيدروكسيد الصوديوم (NaOH)، هيدروكسيد الكالسيوم (Ca(OH)₂).</li>
+            </ul>
+
+            <h3>التفاعل بين الحموض والقواعد: التعادل</h3>
+            <p>عند مزج حمض مع قاعدة، يحدث <strong>تفاعل تعادل</strong>. الناتج هو ماء وملح. المعادلة العامة:</p>
+            <pre>H⁺ + OH⁻ → H₂O</pre>
+
+            <h3>مقياس الحموضة (pH)</h3>
+            <ul>
+                <li>يستخدم لقياس مدى حامضية أو قاعدية مادة ما.</li>
+                <li>مقياس من 0 إلى 14:</li>
+                <ul>
+                    <li>0-6: حامضي.</li>
+                    <li>7: متعادل.</li>
+                    <li>8-14: قاعدي.</li>
+                </ul>
+            </ul>
+        </div>
+         <!-- الأسئلة -->
+         <div class="section">
+            <p dir="ltr">
+                <lable class="mark" id="mark">0</lable>
+                <lable>علامة الطالب</lable>
+                </p>
+            <h2>بعد قراءة المادة التعليمية،أجب عن الاسئلة التالية</h2>
+
+            <div class="question" style="text-align: right;">
+                <p><strong>السؤال الأول</strong></p>
+                <p>عصير البرتقال يحتوي على حمض الستريك ويُعتبر مادة حامضية. أي من التالي هو التفسير الصحيح لخاصية الحموضة في عصير البرتقال؟</p>
+                <div class="answers" style="text-align: right;">
+                        <p>
+                            <input type="radio" id="option1" name="answer1" value="A">
+                            <label for="option1">يحتوي على أيونات الهيدروجين (<sup>+</sup>H).</label>
+
+                        </p>
+                        
+                        <p>
+                            <input type="radio" id="option2" name="answer1" value="B">
+                            <label for="option2">يحتوي على أيونات الهيدروكسيد (<sup>-</sup>OH).</label>
+
+                            </p>
+                        
+                        <p>
+                            <input type="radio" id="option3" name="answer1" value="C">
+                            <label for="option3">مقياس الرقم الهيدروجيني الخاص به يساوي 7</label>
+
+                        
+                        </p>
+                        <p>
+                            <input type="radio" id="option4" name="answer1" value="D">
+                            <label for="option4">لا يتفاعل مع المعادن.</label>
+
+                        </p>
+                    
+                </div>
+                 <p class="r-answers"><strong>الإجابة الصحيحة:</strong> 1</p>
+            </div>
+
+            <div class="question">
+                <p><strong>السؤال الثاني: التفسير العلمي</strong></p>
+                <p>تم خلط حمض الهيدروكلوريك (HCl) مع هيدروكسيد الصوديوم (NaOH) في أنبوب اختبار. ماذا تتوقع أن يكون الناتج؟</p>
+                <div class="answers">
+                    <p>
+                        <input type="radio" id="option1" name="answer2" value="A">
+                        <label for="option1">ملح وماء</label>
+
+                    </p>
+                    <p>
+                        <input type="radio" id="option2" name="answer2" value="B">
+                        <label for="option2">ماء فقط</label>
+
+                    </p>
+                    <p>
+                        <input type="radio" id="option3" name="answer2" value="C">
+                        <label for="option3">غاز ثاني أكسيد الكربون</label>
+
+                    </p>
+                    <p>
+                        <input type="radio" id="option4" name="answer2" value="D">
+                        <label for="option4">لا يحدث أي تفاعل</label>
+
+                    </p>
+                </div>
+                <p class="r-answers"><strong>الإجابة الصحيحة:</strong> 1</p>
+            </div>
+
+            <div class="question">
+                <p><strong>السؤال الثالث: التطبيق العلمي</strong></p>
+                <p>قمت بقياس درجة الحموضة (pH) لعينة من مادة تنظيف وكانت تساوي 11. بناءً على ذلك، أي من الخصائص التالية تنطبق على هذه المادة؟</p>
+                <div class="answers">
+                    <p>
+                        <input type="radio" id="option1" name="answer3" value="A">
+                        <label for="option1">طعمها حامض.</label>
+
+                    </p>
+                    <p>
+                        <input type="radio" id="option2" name="answer3" value="B">
+                        <label for="option2">تحتوي على أيونات الهيدروجين (<sup>+</sup>H).</label>
+
+                    </p>
+                    <p>
+                        <input type="radio" id="option3" name="answer3" value="C">
+                        <label for="option3">يمكنها أن تحول ورقة عباد الشمس الزرقاء إلى اللون الأحمر.</label>
+
+                    </p>
+                    <p>
+                        <input type="radio" id="option4" name="answer3" value="D">
+                        <label for="option4">لها خواص قاعدية.</label>
+
+                    </p>
+                </div>
+                <p class="r-answers"><strong>الإجابة الصحيحة:</strong> 4</p>
+            </div>
+
+            <div class="question">
+                <p><strong>السؤال الرابع: التفسير باستخدام البيانات</strong></p>
+                <P>تم قياس الرقم الهيدروجيني لعدة سوائل وكانت النتائج كالتالي</P>
+                 <ul>
+                    <li>الخل: 3</li>
+                    <li>الماء النقي: 7</li>
+                    <li>محلول صابون: 10</li>
+                </ul>
+                <p>أي من التالي صحيح؟</p>
+                <div class="answers">
+                    <p>
+                        <input type="radio" id="option1" name="answer4" value="A">
+                        <label for="option1">الخل أكثر حامضية من الماء النقي.</label>
+
+                    </p>
+                    <p>
+                        <input type="radio" id="option2" name="answer4" value="B">
+                        <label for="option2">محلول الصابون أكثر حامضية من الخل.</label>
+
+                    </p>
+                    <p>
+                        <input type="radio" id="option3" name="answer4" value="C">
+                        <label for="option3">الماء النقي هو المادة الأكثر قاعدية.</label>
+
+                    </p>
+                    <p>
+                        <input type="radio" id="option4" name="answer4" value="D">
+                        <label for="option4">الخل والماء النقي لهما نفس الحموضة.</label>
+
+                    </p>
+                </div>
+                <p class="r-answers"><strong>الإجابة الصحيحة:</strong> 1</p>
+            </div>
+            <div class ="bttn">
+            <button class="submit-btn" onclick="showAnswers()" >إرسال</button></div>
+
+ <!-- تغيير الكود
+<div class="overlay" id="overlay"></div>
+
+ <div class="modal" id="modal">
+            <h2>الإجابات:</h2>
+            <p id="result1"></p>
+            <p id="result2"></p>
+            <p id="result3"></p>
+            <p id="result4"></p>
+            <button class="close-btn" onclick="closeModal()">إغلاق</button>
+ </div> -->
+    
+        </div>
+        
+        
+    </div>
+    
+
+       
+</body>
+</html>

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ar">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>اختبار بيزا</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+            font-size: 16;
+        }
+
+        .con {
+            margin-top: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+
+        }
+
+        .subject {
+            text-align: center;
+            background-color: #627bec;
+            width: 15%;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.7);
+            border-radius: 15px;
+            padding: 6px;
+        }
+
+        .subject h2 {
+            margin-top: 10px;
+        }
+
+        .subject img {
+            width: 70px;
+            height: 70px;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        header {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 20px;
+        }
+
+        .credit {
+            display: flex;
+            background-color: #f3f8dd;
+            width: 60%;
+            justify-content: space-between;
+            justify-self: center;
+            margin-top: 40px;
+            padding-left: 25px;
+            padding-right: 25px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.7);
+            border-radius: 20px;
+
+
+
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <img src="sub/pisa.jpg" width="150px" height="150px">
+    </div>
+
+    <div class="header">
+        <h1>أهلاً وسهلاً في اختبار بيزا للصف العاشر</h1>
+    </div>
+
+
+    <h1>اختر المادة لإجراء الاختبار</h1>
+    <div class="con">
+        <div class="subject" onclick="window.location.href='sub/math.html'">
+            <img src="sub/math1.png" alt="رياضيات">
+            <h2>رياضيات</h2>
+        </div>
+
+        <div class="subject" onclick="window.location.href='sub/phq1.html'">
+            <img src="sub/phy1.png" alt="فيزياء">
+            <h2>فيزياء</h2>
+        </div>
+
+        <div class="subject" onclick="window.location.href='sub/chq1.html'">
+            <img src="sub/chem1.png" alt="كيمياء">
+            <h2>كيمياء</h2>
+        </div>
+
+        <div class="subject" onclick="window.location.href='sub/bioq1.html'">
+            <img src="sub/bio1.png" alt="أحياء">
+            <h2>أحياء</h2>
+        </div>
+
+        <div class="subject" onclick="window.location.href='sub/geo1.html'">
+            <img src="sub/geo1.png" alt="علوم أرض">
+            <h2>علوم أرض</h2>
+        </div>
+
+    </div>
+    <div class="credit">
+        <h4>المتابعة والاشراف المعلمة اماني فايز</h4>
+        <h4>العمل اعداد وتصميم المعلمة الهام عويدات</h4>
+
+    </div>
+</body>
+<script>
+
+
+</script>
+
+</html>

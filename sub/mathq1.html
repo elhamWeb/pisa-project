@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html dir="rtl">
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background-color: white;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: center;
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        select {
+            padding: 8px;
+            margin: 10px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            width: 200px;
+            font-weight: bold;
+        }
+        button {
+            padding: 10px 20px;
+            margin: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        p {
+            line-height: 1.6;
+            color: #333;
+            font-weight: bold;
+        }
+        .task{
+            width:70%;
+        
+        }
+        .highlight {
+            background-color: #fab8b8;
+        }
+        .mark{
+            width:100px;
+            height: 100px;
+            border-color: #333;
+            border: 5px;
+            border-radius: 10px;
+            background-color: rgb(241, 192, 127);
+            padding: 10px 20px; /* Space inside the label */
+
+        }
+
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <p dir="ltr">
+        <lable class="mark" id="mark">0</lable>
+        <lable>علامة الطالب</lable>
+        </p>
+
+        <h4>تدير شركة نقل بضائع أسطولًا من الشاحنات التي تنقل المنتجات بين 3 مدن (أ، ب، ج). الجدول التالي يوضح عدد الشاحنات المستخدمة يوميًا، سعة كل شاحنة (بالأطنان)، تكلفة التشغيل اليومية لكل شاحنة (بالدينار)، والمسافة بين المدن (بالكيلومترات):
+        <h4>الشركة تريد تحسين كفاءة النقل لتقليل التكاليف وزيادة الأرباح. يتم شحن البضائع من المدينة (ب) إلى المدن (أ) و(ج). يتم احتساب تكلفة الشحن لكل طن على أساس تكلفة تشغيل الشاحنات، ويتم تحميل الشاحنات بكامل طاقتها دائمًا.
+        </h4>        
+        <!-- الجدول الأول -->
+        <table id="table1" >
+            <tr>
+                <th>المدينة</th>
+                <th>عدد الشاحنات المستخدمة يوميًا</th>
+                <th>سعة الشاحنة (بالأطنان)</th>
+                <th>تكلفة التشغيل اليومية لكل شاحنة (دينار)</th>
+                <th>المسافة الى المدينة ب</th>
+                
+            </tr>
+            <tr>
+                <td>أ</td>
+                <td>15</td>
+                <td>20</td>
+                <td>95</td>
+                <td>150</td>
+            </tr>
+            <tr>
+                <td>ج</td>
+                <td>20</td>
+                <td>25</td>
+                <td>114</td>
+                <td>200</td>
+            </tr>
+        </table>
+
+        <p>لديك اربع مهام لتنفيذها وابدأ بها بالترتيب بدءا من المهمة الاولى</p>
+        <div style="margin: 20px 0;">
+            <select class="task">
+                <option>المهمة1:
+                    احسب إجمالي تكلفة الشحن اليومية لكل مدينة (أ و ج) بناءً على عدد الشاحنات وسعتها وتكلفة التشغيل.
+                 </option>
+                <option>المهمة 2 :
+                    احسب تكلفة الشحن لكل طن لكل مدينة.
+                </option>
+                <option>المهمة 3:
+                    إذا قررت الشركة زيادة سعة الشاحنات بنسبة 20% وتقليل عدد الشاحنات المستخدمة بنسبة 10% في كل مدينة، فكم ستكون التكاليف الجديدة؟
+                    </option>
+                <option>المهمة 4:
+                    إذا أرادت الشركة تحديد رسوم شحن لكل طن بحيث تحقق ربحًا بنسبة 15% على تكلفة الشحن، فما هي الرسوم التي يجب فرضها لكل طن لكل مدينة(حسب  التكايف الجديدة)؟
+                    
+                </option>
+            </select>
+
+
+        <!-- الجدول الثاني -->
+        <table>
+            <thead>
+            <tr>
+                <th> تكلفة الشحن اليومية</th>
+                <th> اجمالي سعة الشاحنات لكل مدينة</th>
+                <th>تكلفة الشحن لكل طن لكل مدينة</th>
+                <th>زيادة سعة الشاحنات بنسبة 20%</th>
+                <th>تقليل عدد الشاحنات بنسبة 10%</th>
+                <th>تكلفة الشحن اليومية الجديدة</th>
+                <th>اجمالي سعة الشاحنات  الجديدة</th>
+                <th>تكلفة الشحن الجديدة لكل طن لكل مدينة</th>
+                <th>الرسوم التي يجب فرضها لكل طن لكل مدينة</th>
+                <th>مقدار زيادة سعة الشاحنات</th>
+                <th>مقدار تقليل عدد الشاحنات</th>
+                <th>مقدار الربح المطلوب لكل طن  </th>
+
+
+ 
+            </tr>
+        </thead>
+        <tbody id="table2">
+                <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>4</td>
+                <td>1</td>
+                <td>0.6</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>4.5</td>
+                <td>2</td>
+                <td>0.6</td>
+            </tr>
+        </tbody>
+        </table>
+
+        <!-- القوائم المنسدلة -->
+        <div style="margin: 20px 0;">
+            <select id="resultColumn">
+                <option value="0"> تكلفة الشحن اليومية</option>
+                <option value="1"> اجمالي سعة الشاحنات لكل مدينة</option>
+                <option value="2">تكلفة الشحن لكل طن لكل مدينة</option>
+                <option value="3">زيادة سعة الشاحنات بنسبة 20%</option>
+                <option value="4">تقليل عدد الشاحنات بنسبة 10%</option>
+                <option value="5">تكلفة الشحن اليومية الجديدة</option>
+                <option value="6">اجمالي سعة الشاحنات  الجديدة</option>
+                <option value="7">تكلفة الشحن الجديدة لكل طن لكل مدينة</option>
+                <option value="8">الرسوم التي يجب فرضها لكل طن لكل مدينة</option>
+                </select>
+
+            <span>=</span>
+            <select id="column1">
+                <option value="20">المدينة</option>
+                <option value="21">عدد الشاحنات المستخدمة يوميًا</option>
+                <option value="22">سعة الشاحنة (بالأطنان)</option>
+                <option value="23">تكلفة التشغيل اليومية لكل شاحنة (دينار)</option>
+                <option value="24">المسافة إلى= المدينة (ب) (كم)</option>
+                <option value="0"> تكلفة الشحن اليومية</option>
+                <option value="1"> اجمالي سعة الشاحنات لكل مدينة</option>
+                <option value="2">تكلفة الشحن لكل طن لكل مدينة</option>
+                <option value="3">زيادة سعة الشاحنات بنسبة 20%</option>
+                <option value="4">تقليل عدد الشاحنات بنسبة 10%</option>
+                <option value="5">تكلفة الشحن اليومية الجديدة</option>
+                <option value="6">اجمالي سعة الشاحنات  الجديدة</option>
+                <option value="7">تكلفة الشحن الجديدة لكل طن لكل مدينة</option>
+                <option value="8">الرسوم التي يجب فرضها لكل طن لكل مدينة</option>
+                <option value="9">مقدار زيادة سعة الشاحنات</option>
+                <option value="10">مقدار تقليل عدد الشاحنات</option>
+                <option value="11">مقدار الربح لكل طن </option>
+
+
+            </select>
+            <select id="operation">
+                <option value="+">جمع</option>
+                <option value="-">طرح</option>
+                <option value="*">ضرب</option>
+                <option value="/">قسمة</option>
+            </select>
+
+
+            <select id="column2">
+                <option value="20">المدينة</option>
+                <option value="21">عدد الشاحنات المستخدمة يوميًا</option>
+                <option value="22">سعة الشاحنة (بالأطنان)</option>
+                <option value="23">تكلفة التشغيل اليومية لكل شاحنة (دينار)</option>
+                <option value="24">المسافة إلى= المدينة (ب) (كم)</option>
+                <option value="0"> تكلفة الشحن اليومية</option>
+                <option value="1"> اجمالي سعة الشاحنات لكل مدينة</option>
+                <option value="2">تكلفة الشحن لكل طن لكل مدينة</option>
+                <option value="3">زيادة سعة الشاحنات بنسبة 20%</option>
+                <option value="4">تقليل عدد الشاحنات بنسبة 10%</option>
+                <option value="5">تكلفة الشحن اليومية الجديدة</option>
+                <option value="6">اجمالي سعة الشاحنات  الجديدة</option>
+                <option value="7">تكلفة الشحن الجديدة لكل طن لكل مدينة</option>
+                <option value="8">الرسوم التي يجب فرضها لكل طن لكل مدينة</option>
+                <option value="9">مقدار زيادة سعة الشاحنات</option>
+                <option value="10">مقدار تقليل عدد الشاحنات</option>
+                <option value="11">مقدار الربح لكل طن </option>
+
+            </select>  
+          </div>
+
+        <!-- الأزرار -->
+        <div style="text-align: center;">
+            <button onclick="calculate()">تنفيذ</button>
+            <button onclick="clearTable()">مسح المحتويات</button>
+            <button onclick="checkTable()">ارسال</button>
+
+        </div>
+    </div>
+</body>
+<script>
+    function checkTable(){
+       
+      const tblcontent=  document.getElementById('table2');
+      const TBLrows= tblcontent.rows;
+      let result=0;
+      answers=[1425.0,300.0,4.8,24,14,1330.0,336.0,4.0,4.6,2280.0,500.0,4.6,29.5,18,2052.0,531.0,3.9,4.5] ;
+      let count=0;
+      for (let i = 0; i < TBLrows.length; i++) {
+        for(let j=0; j<TBLrows[i].cells.length-3;j++ ){
+        if(parseFloat(TBLrows[i].cells[j].textContent)== answers[count] )
+        {
+        result=result+1;
+        let cell=TBLrows[i].cells[j];
+        cell.classList.add("highlight"); // تمييز الخلية
+        }
+        else{
+            TBLrows[i].cells[j].classList.remove("highlight");
+        }
+        count+=1;
+
+        }
+    }
+    const lbl=document.getElementById('mark');
+    lbl.innerText=result+"/18";
+    window.scrollTo({
+                top: 0, // Scroll to the very top
+                behavior: 'smooth' // Smooth scrolling animation
+            });
+
+    
+}
+    function calculate() {
+        v1=false;
+        v2=false;
+        let col1Index = document.getElementById('column1').value;
+        if(col1Index>=20){
+            col1Index=col1Index-20;
+            v1=true;
+        }
+           
+        let col2Index = document.getElementById('column2').value;
+        if(col2Index>=20){
+            col2Index=col2Index-20;
+            v2=true;
+        }
+        
+        const resultColIndex = document.getElementById('resultColumn').value;
+        const operation = document.getElementById('operation').value;
+
+        const table = document.getElementById('table2');
+        const rows = table.rows;
+
+        const table1 = document.getElementById('table1');
+        const rows1 = table1.rows;
+
+
+        for (let i = 0; i < rows.length; i++) {
+           let col1Value=1;
+            let col2Value=1;
+            if(v1){
+                col1Value = parseFloat(rows1[i+1].cells[col1Index].textContent) || 0;
+
+            }
+            else{
+            col1Value = parseFloat(rows[i].cells[col1Index].textContent) || 0;
+            }
+            if(v2){
+                col2Value = parseFloat(rows1[i+1].cells[col2Index].textContent) || 0;
+
+            }
+            else{
+                 col2Value = parseFloat(rows[i].cells[col2Index].textContent) || 0;
+            }
+            let result = 0;
+
+            switch (operation) {
+                case '+':
+                    result = col1Value + col2Value;
+                    break;
+                case '-':
+                    result = col1Value - col2Value;
+                    break;
+                case '*':
+                    result = col1Value * col2Value;
+                    break;
+                case '/':
+                    result = col2Value !== 0 ? col1Value / col2Value : 0;
+                    break;
+            }
+
+            rows[i].cells[resultColIndex].textContent = result.toFixed(1);
+        }
+    }
+
+    function clearTable() {
+        const table = document.getElementById('table2');
+        const rows = table.rows;
+
+        for (let i = 0; i < rows.length; i++) {
+            for (let j =0 ; j < rows[i].cells.length-3; j++) {
+                rows[i].cells[j].textContent = '';
+            }
+        }
+    }
+</script>
+
+</html>

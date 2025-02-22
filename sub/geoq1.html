@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>خريطة بالسحب والإفلات</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            padding: 5px;
+        }
+        .map-container {
+            position: relative;
+            width: 100%;
+            height: 500px;
+            background: url('map2.png') no-repeat center center;
+            background-size: 66vw 76vh;
+            border-bottom: 4px solid #000;
+        }
+        .drop-zone {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            border: 2px dashed #000;
+            background-color: rgba(255, 255, 255, 0.5);
+        }
+        .draggable {
+            width: 30px;
+            height: 30px;
+            cursor: grab;
+        }
+        table {
+            width: 60%;
+            margin-top: 5px;
+            border-collapse: collapse;
+        }
+        td {
+            text-align: center;
+            padding: 8px;
+        }
+        #score {
+            font-size: 20px;
+            font-weight: bold;
+            margin-top: 2px;
+        }
+    </style>
+</head>
+<body>
+    
+    <h3>بعد دراستك المادة التعليمية اسحب الكتلة الهوائية المناسبة الى موقعها على الخريطة</h3>
+    <div class="container">
+        <div class="map-container">
+            <div class="drop-zone" id="zone1" style="top: 29%; left: 25%;"></div>
+            <div class="drop-zone" id="zone2" style="top: 35%; left: 60%;"></div>
+            <div class="drop-zone" id="zone3" style="top: 52%; left: 25%;"></div>
+            <div class="drop-zone" id="zone4" style="top: 60%; left: 65%;"></div>
+            <div class="drop-zone" id="zone5" style="top: 68%; left: 35%;"></div>
+            <div class="drop-zone" id="zone6" style="top: 75%; left: 72%;"></div>
+        </div>
+        <!-- إضافة صورة key.png هنا -->
+
+        <img src="key.png" alt="مفتاح">
+    </div>
+
+    <table id="image-table">
+        <tr>
+            <td><img src="p1.png" class="draggable" draggable="true" id="item1"></td>
+            <td><img src="p2.png" class="draggable" draggable="true" id="item2"></td>
+            <td><img src="p3.png" class="draggable" draggable="true" id="item3"></td>
+            <td><p id="score"></p></td>
+            <td><img src="p4.png" class="draggable" draggable="true" id="item4"></td>
+            <td><img src="p5.png" class="draggable" draggable="true" id="item5"></td>
+            <td><img src="p6.png" class="draggable" draggable="true" id="item6"></td>
+        </tr>
+    </table>
+
+
+    <script>
+        const correctMappings = {
+            'item5': 'zone1',
+            'item6': 'zone2',
+            'item2': 'zone3',
+            'item3': 'zone4',
+            'item4': 'zone5',
+            'item1': 'zone6'
+        };
+
+        const draggables = document.querySelectorAll('.draggable');
+        const dropZones = document.querySelectorAll('.drop-zone');
+        const imageTable = document.getElementById('image-table');
+        const scoreDisplay = document.getElementById('score');
+
+        draggables.forEach(item => {
+            item.addEventListener('dragstart', (event) => {
+                event.dataTransfer.setData('text/plain', event.target.id);
+            });
+        });
+
+        dropZones.forEach(zone => {
+            zone.addEventListener('dragover', (event) => {
+                event.preventDefault();
+            });
+
+            zone.addEventListener('drop', (event) => {
+                event.preventDefault();
+                const itemId = event.dataTransfer.getData('text/plain');
+                const draggedElement = document.getElementById(itemId);
+
+                // إذا كان العنصر داخل منطقة أخرى، قم بإرجاعه للطاولة قبل وضعه في الموقع الجديد
+                if (draggedElement.parentNode.classList.contains('drop-zone')) {
+                    draggedElement.parentNode.innerHTML = ''; // إزالة الصورة السابقة
+                }
+
+                zone.appendChild(draggedElement);
+
+                checkCompletion();
+            });
+        });
+
+        // تمكين إعادة السحب إلى الجدول
+        imageTable.addEventListener('dragover', (event) => {
+            event.preventDefault();
+        });
+
+        imageTable.addEventListener('drop', (event) => {
+            event.preventDefault();
+            const itemId = event.dataTransfer.getData('text/plain');
+            const draggedElement = document.getElementById(itemId);
+            imageTable.querySelector('tr').appendChild(draggedElement);
+            checkCompletion();
+        });
+
+        function checkCompletion() {
+            let totalImages = Object.keys(correctMappings).length;
+            let placedImages = document.querySelectorAll('.drop-zone img').length;
+
+            if (placedImages === totalImages) {
+                let correctCount = 0;
+                dropZones.forEach(zone => {
+                    const img = zone.querySelector('img');
+                    if (img && correctMappings[img.id] === zone.id) {
+                        correctCount++;
+                    }
+                });
+
+                let scoreMessage = `العلامة: ${correctCount} / ${totalImages}`;
+                scoreDisplay.textContent = scoreMessage;
+                scoreDisplay.style.color = correctCount === totalImages ? 'green' : 'red';
+            } else {
+                scoreDisplay.textContent = "";
+            }
+        }
+    </script>
+
+</body>
+</html>

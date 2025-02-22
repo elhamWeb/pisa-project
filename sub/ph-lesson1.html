@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>حركة الجسم على سطح مائل</title>
+    <style>
+        body {
+            text-align: right;
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h1, h2 {
+            color: #0056b3;
+        }
+        ul {
+            align-self: center;
+            list-style-type:none;
+            padding-right: 20px;
+            font-size: 1.1em;
+        }
+        .example {
+            font-size: 1.1em;
+            background: #e9f7ff;
+            padding: 10px;
+            border-right: 4px solid #0056b3;
+            margin: 15px 0;
+        }
+        p{
+            font-size: 1.1em;
+        }
+        .button {
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            font-family: Arial, sans-serif;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>حركة الجسم على سطح مائل</h1>
+        
+        <p>في حياتنا اليومية، نجد العديد من الأمثلة التي تمثل مفهوم السطح المائل، مثل</p>
+        <ul>
+            <li>منزلقات الألعاب في الحدائق.</li>
+            <li>الطرق الجبلية أو المنحدرات في الشوارع.</li>
+            <li>استخدام المنحدرات عند نقل الأثاث أو الأشياء الثقيلة.</li>
+        </ul>
+
+        <h2>القوى المؤثرة على جسم على سطح مائل</h2>
+        <div display="flex" gap="30px" align-content="center">
+            <img src="inline.gif" width="300" height="250">
+            <img src="inc.gif" width="300" height="250">
+        </div>
+        <p>عندما نضع جسمًا على سطح مائل (مثل سيارة على منحدر)، فإن وزنه يؤثر عليه بقوة عمودية إلى أسفل باتجاه مركز الأرض. يتم تحليل هذه القوة إلى</p>
+        <ul>
+            <li><strong>مركبة موازية للسطح المائل:</strong> تدفع الجسم إلى الأسفل على طول السطح.</li>
+            <li><strong>مركبة عمودية على السطح:</strong> تضغط على السطح.</li>
+        </ul>
+        
+
+        <div class="example">
+            <strong>مثال:</strong>
+            عندما تقف سيارة على طريق منحدر، يجب أن تكون المكابح قادرة على التغلب على القوة الموازية لمنع السيارة من الانزلاق.
+        </div>
+
+        <h2>التسارع الناتج على سطح مائل</h2>
+        <p>إذا كان السطح أملسًا (بدون احتكاك)، فإن الجسم يتسارع بسبب تأثير المركبة الموازية فقط:</p>
+        <p><strong>a = g &times; sin(&theta;)</strong></p>
+        <p>حيث <strong>g</strong> هو تسارع الجاذبية الأرضية ,ويساوي 9.8 m/s<sup>2</sup>).</p>
+
+        <p>أما إذا كان السطح خشنًا (مع وجود احتكاك)، فإن التسارع يقل لأن قوة الاحتكاك تعمل عكس اتجاه الحركة<span>.</span></p>
+        <p><strong>a = g &times; sin(&theta;) - &mu; &times; g &times; cos(&theta;)</strong></p>
+
+        <div class="example">
+            <strong>مثال:</strong>
+            عند دفع صندوق ثقيل على منحدر مائل خشن، يتحرك ببطء أكبر مقارنة بسطح أملس بسبب تأثير الاحتكاك.
+        </div>
+
+        <h2>أمثلة من الواقع</h2>
+        <ul>
+            <li><strong>الألعاب والمنزلقات:</strong> تكون سرعة النزول أكبر إذا كان المنزلق أكثر انحدارًا، حيث يزداد التسارع مع زيادة زاوية الميل.</li>
+            <li><strong>الطرق الجبلية:</strong> السيارات تحتاج إلى قوة إضافية عند الصعود، وأثناء النزول يعتمد السائق على المكابح للتحكم في السرعة.</li>
+            <li><strong>نقل الأشياء الثقيلة:</strong> تُستخدم منحدرات صغيرة لتقليل الجهد اللازم لنقل البضائع الثقيلة.</li>
+            <li><strong>الأجسام على منحدر:</strong> إذا وضعت زجاجة على سطح مائل بدرجة ميل كافية، ستنزلق بسبب تأثير الجاذبية.</li>
+        </ul>
+
+        <h2>تطبيق عملي: سيارة على منحدر</h2>
+        <p>لنفترض أن سيارة كتلتها 1000 كجم متوقفة على منحدر بزاوية 30&deg;:</p>
+        <ul>
+            <li><strong>القوة الموازية للسطح:</strong> تحاول سحب السيارة إلى أسفل.</li>
+            <li>لحسابها:</li>
+                 <li><strong>F<sub>||</sub> = m &times; g &times; sin(&theta;) = 1000 &times; 9.8 &times; 0.5 = 4900 N.</strong></li>
+            <li>إذا كان السائق يريد إبقاء السيارة ثابتة، يجب أن تعادل المكابح هذه القوة.</li>
+        </ul>
+    
+            <div align-content="center"><a href='incline.html'> <img src="btn.png"></a></div>
+        
+    </div>
+    
+</body>
+</html>
